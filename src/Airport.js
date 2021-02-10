@@ -17,6 +17,8 @@ class Airport {
 
   takeoffPlane(plane) {
     let index = this.hanger.indexOf(plane)
-    this.hanger.splice(index);
+    console.log(index)
+    console.log(plane)
+    this.hanger.splice(index, 1);
   };
 }

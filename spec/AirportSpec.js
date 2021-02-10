@@ -14,10 +14,12 @@ describe("Airport", function() {
   });
 
   it("can remove an item from the hanger array", function () {
-    let airport = new Airport();
-    airport.landPlane("plane");
-    airport.takeoffPlane("plane");
-    expect(airport.hanger).not.toContain("plane");
+    let airport = new Airport(2);
+    airport.landPlane("Spitfire");
+    airport.landPlane("Boeing");
+    airport.takeoffPlane("Spitfire");
+    expect(airport.hanger).not.toContain("Spitfire");
+    expect(airport.hanger).toContain("Boeing");
   });
 
   it("prevents landing when full", function() {
@@ -30,7 +32,7 @@ describe("Airport", function() {
 
   it("has a default capacity that can be overridden", function() {
     let airport = new Airport(3);
-    airport.landPlane("plane");
+    airport.landPlane("spit");
     airport.landPlane("plane");
     airport.landPlane("plane");
     expect(function () {
