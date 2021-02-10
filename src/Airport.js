@@ -5,10 +5,27 @@ class Airport {
     this.DEFAULT_CAPACITY = default_capacity
   }
 
+  storm() {
+    let weather = Math.floor(Math.random() * 10)
+    if (weather < 3) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
 
   landPlane(plane) {
+
+    let stormy_weather = this.storm();
+    console.log("Landing: Storm is " + stormy_weather);
+
     if (this.hanger.length === this.DEFAULT_CAPACITY) {
       throw new Error("Hanger full")
+    }
+    else if (stormy_weather === true) {
+      throw new Error("Too stormy to land")
     }
     else {
     this.hanger.push(plane);
@@ -16,9 +33,15 @@ class Airport {
   };
 
   takeoffPlane(plane) {
+    let stormy_weather = this.storm();
+    console.log("Takeoff: Storm is " + stormy_weather);
+
+    if (stormy_weather === true) {
+      throw new Error("Too stormy to fly")
+    }
+  else {
     let index = this.hanger.indexOf(plane)
-    console.log(index)
-    console.log(plane)
     this.hanger.splice(index, 1);
+  }
   };
 }
