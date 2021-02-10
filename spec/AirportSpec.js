@@ -58,8 +58,6 @@ describe("Airport", function() {
       let airport = new Airport();
       spyOn(airport,'storm').and.returnValue(true);
       expect(function() {
-        let weather_stub = airport.storm();
-        console.log("In landing storm tests the storm is always " + weather_stub);
         airport.landPlane("Boeing");
       }).toThrowError("Too stormy to land");
     });
@@ -67,8 +65,6 @@ describe("Airport", function() {
     it("allows landing when weather is fine", function() {
       let airport = new Airport();
       spyOn(airport,'storm').and.returnValue(false);
-      let weather_stub = airport.storm();
-      console.log("In landing good weather test the storm is always " + weather_stub);
       airport.landPlane("plane");
       expect(airport.hanger).toEqual(["plane"]);
     });
@@ -78,8 +74,6 @@ describe("Airport", function() {
       airport.hanger.push("Spitfire", "Boeing");
       spyOn(airport,'storm').and.returnValue(true);
       expect(function() {
-        let weather_stub = airport.storm();
-        console.log("In take off storm tests the storm is always " + weather_stub);
         airport.takeoffPlane("Spitfire")
       }).toThrowError("Too stormy to fly");
       expect(airport.hanger).toContain("Spitfire");
